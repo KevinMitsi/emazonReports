@@ -1,6 +1,7 @@
 package com.emazon.reports.infraestructure.entity;
 
-import com.emazon.reports.domain.model.ItemDetails;
+import com.emazon.reports.domain.model.PaymentStatus;
+import com.emazon.reports.domain.model.SaleItem;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -19,15 +20,24 @@ public class SaleReportEntity {
     private String id;
 
     @Indexed
-    private String userEmail;
+    private String user;
 
     private Date creationDate;
 
+    private List<SaleItem> itemDetails;
+
     @Indexed
-    private Long total;
-
-    private List<ItemDetails> itemDetails;
-
+    private Double total;
+    @Indexed
+    private PaymentStatus paymentStatus;
     @Indexed
     private Date saleDate;
+
+    public void calculateTotal(){
+        this.total = 0D;
+        for (SaleItem si : this.itemDetails){
+            si.calculateSubTotal();
+            total+= si.getSubTotal();
+        }
+    }
 }

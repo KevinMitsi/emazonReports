@@ -1,7 +1,7 @@
 package com.emazon.reports.application.handler;
 
-import com.emazon.reports.application.dto.SaleReportDto;
+import com.emazon.reports.domain.model.SaleReport;
 
 public interface ISaleReportHandler {
-    void save(SaleReportDto saleReportDto);
+    void save(SaleReport saleReportDto);
 }

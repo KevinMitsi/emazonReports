@@ -10,12 +10,14 @@ import java.util.List;
 @Setter
 public class SaleReport {
     private String id;
-    private String userEmail;
-    private Date creationDate;
-    private Long total;
-    private List<ItemDetails> itemDetails;
-    private Date saleDate;
 
+    private String user;
+
+    private List<SaleItem> saleItems;
+
+    private Date saleDate;
+    private Double total;
+    private PaymentStatus paymentStatus;
     public SaleReport() {
         //for frameworks etc
     }
